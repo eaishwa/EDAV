@@ -485,12 +485,12 @@ df_illiteracy &lt;-<span class="st"> </span>state.x77 <span class="op">%&gt;%</s
                  <span class="dt">title =</span> <span class="st">&quot;State Illiteracy Rates, 1977&quot;</span>,
                  <span class="dt">legend =</span> <span class="st">&quot;Percent Illiterate&quot;</span>)</code></pre>
 <p><img src="maps_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<p>Note: the <strong>choroplethr</strong> “free course” that you may come across arrives one lesson at a time by email over an extended period so not the best option unless you have a few weeks to spare.</p>
+<p><strong>Note</strong>: the <code>choroplethr</code> “free course” that you may come across arrives one lesson at a time by email over an extended period so not the best option unless you have a few weeks to spare.</p>
 </div>
 <div id="square-bins" class="section level2">
 <h2><span class="header-section-number">11.2</span> Square bins</h2>
 <p>Packages such as <code>statebins</code> create choropleth style maps with equal size regions that roughly represent the location of the region, but not the size or shape.</p>
-<p><strong>Important</strong>: Don’t install <strong>statebins</strong> from CRAN; use the <a href="https://github.com/hrbrmstr/statebins" target="_blank">dev version</a> – it contains many improvements, which are detailed in <a href="https://rud.is/b/2017/11/18/statebins-reimagined/#comment-19346" target="_blank">“Statebins Reimagined”</a>.</p>
+<p><strong>Important</strong>: Don’t install <code>statebins</code> from CRAN; use the <a href="https://github.com/hrbrmstr/statebins" target="_blank">dev version</a> – it contains many improvements, which are detailed in <a href="https://rud.is/b/2017/11/18/statebins-reimagined/#comment-19346" target="_blank">“Statebins Reimagined”</a>.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;hrbrmstr/statebins&quot;)</span>
 <span class="kw">library</span>(statebins)
 df_illit &lt;-<span class="st"> </span>state.x77 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
