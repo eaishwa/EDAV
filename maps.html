@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="basics.html">
-<link rel="next" href="contribute.html">
+<link rel="prev" href="dates.html">
+<link rel="next" href="network.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -460,144 +460,52 @@ function unhover(element) {
 <br><br>
 <a href="index.html"><img src="images/icons/edav_resource_url_no_smile.png" onmouseover="hover(this);" onmouseout="unhover(this);" /></a>
 </center>
-<div id="project" class="section level1">
-<h1><span class="header-section-number">2</span> Final Project Assignment</h1>
-<p><img src="images/banners/banner_presentation.png" /></p>
-<div id="overview" class="section level2">
-<h2><span class="header-section-number">2.1</span> Overview</h2>
-<p>This section goes over what’s expected for the final project.</p>
-<p><strong>General Note</strong>: Please note that this sheet cannot possibly cover all the “do’s and don’ts” of data analysis and visualization. You are expected to follow all of the best practices discussed in class throughout the semester.</p>
+<div id="maps" class="section level1">
+<h1><span class="header-section-number">11</span> Spatial Data</h1>
+<!-- Under Construction Section
+----------------------------------------------------------------------------- -->
+<p><img src="images/banners/banner_maps.png" alt="Maps" />
+<em>This page is a work in progress. We appreciate any input you may have. If you would like to help improve this page, consider <a href="contribute.html">contributing to our repo</a>.</em>
+<!-- ------------------------------------------------------------------------ --></p>
+<div id="choropleth-maps" class="section level2">
+<h2><span class="header-section-number">11.1</span> Choropleth maps</h2>
+<p>Cloropleth maps use color to indicate the value of a variable within a defined region, generally political boundaries. The <strong>choroplethr</strong> package makes it simple to draw choropleth maps of <a href="https://arilamstein.com/documentation/choroplethr/reference/" target="_blank">U.S. states, countries, and census tracts, as well as countries of the world</a>; <strong>choroplethrZip</strong> provides data for <a href="https://arilamstein.com/creating-zip-code-choropleths-choroplethrzip/" target="_blank">zip code level choropleths</a>; <strong>choroplethrAdmin1</strong> draws choropleths for administrative regions of <a href="https://rdrr.io/cran/choroplethrAdmin1/man/get_admin1_countries.html" target="_blank">world countries</a>.</p>
+<p>Note: You must install also install <strong>choroplethrMaps</strong> for <strong>choroplethr</strong> to work. In addition, <strong>choroplethr</strong> requires a number of other dependencies which should be installed automatically, but if they aren’t, you can manually install the missing packages that you are notified about when you call <code>library(choroplethr)</code>: <strong>maptools</strong>, and <strong>rgdal</strong>, <strong>sp</strong>.</p>
+<p>We’ll use the <code>state.x77</code> dataset for this example:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(choroplethr)
+
+<span class="co"># data frame must contain &quot;region&quot; and &quot;value&quot; columns</span>
+
+df_illiteracy &lt;-<span class="st"> </span>state.x77 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;state&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">region =</span> <span class="kw">tolower</span>(<span class="st">`</span><span class="dt">state</span><span class="st">`</span>), <span class="dt">value =</span> Illiteracy)
+
+<span class="kw">state_choropleth</span>(df_illiteracy,
+                 <span class="dt">title =</span> <span class="st">&quot;State Illiteracy Rates, 1977&quot;</span>,
+                 <span class="dt">legend =</span> <span class="st">&quot;Percent Illiterate&quot;</span>)</code></pre>
+<p><img src="maps_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Note: the <strong>choroplethr</strong> “free course” that you may come across arrives one lesson at a time by email over an extended period so not the best option unless you have a few weeks to spare.</p>
 </div>
-<div id="general-info" class="section level2">
-<h2><span class="header-section-number">2.2</span> General info</h2>
-<div id="goal" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Goal</h3>
-<p>The goal of this project is to perform an exploratory data analysis / create visualizations with data of your choosing in order to gain preliminary insights on questions of interest to you.</p>
-</div>
-<div id="teams" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> Teams</h3>
-<p>You must work in teams of 2-4 people. (If you have specific interests you should try to find partners on <a href="https://piazza.com/" target="_blank">Piazza</a> first as we will not be able to match on specific criteria – we will simply assign groups in the order in which responses come in.)</p>
-</div>
-<div id="signup" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> Signup</h3>
-<p>Please create a group by clicking on the People tab in CourseWorks, and then Student Groups. Next add the members of your group by dragging the names into the group.</p>
-<p>Please use the following naming convention for your group name: Columbia UNIs in <em>alphabetical order</em>, with underscores separating names, for example: <strong>jtr13_rar3010_sw2934</strong>. Remember that final project groups may have between 2 and 4 members.</p>
-<p>Once you do so, we will create a copy of your group as a Final Project Group, which appears as a separate tab in the People section of CourseWorks. (If you’re wondering, this is necessary since Student Groups cannot be used for graded assignments due to the way CourseWorks is designed.)</p>
-<p>If you don’t sign up by the November 1 deadline, you will be assigned to a group randomly on November 2. That is not a bad option, and more realistic in terms of preparing yourself for a work environment.</p>
-<p>Once the groups are set up, we will ask for a short description of your project ideas, so start planning!</p>
-</div>
-<div id="topics" class="section level3">
-<h3><span class="header-section-number">2.2.4</span> Topics</h3>
-<p>The topic you choose is open-ended… choose something that you are intereted in and genuinely curious about! Think of some questions that you don’t know the answer to. Next look for data that might help you answer those questions.</p>
-</div>
-<div id="data" class="section level3">
-<h3><span class="header-section-number">2.2.5</span> Data</h3>
-<p>The data can be pulled from multiple sources; it does not need to be a single dataset. Be sure to get data from the original source. For example, if you wish to work with data collected and distributed by the <a href="https://www.cdc.gov/DataStatistics/" target="_blank">Centers for Disease Control</a>, that is where you should go to access the data, not a third party that has posted the data. Avoid overused datasets (think <code>Titanic</code>) as well as those used in Kaggle (or similar) competitions.</p>
-<p>A few examples are:</p>
-<ul>
-<li><a href="https://opendata.cityofnewyork.us/" target="_blank">NYC Open Data</a></li>
-<li><a href="https://www.bls.gov/" target="_blank">US Bureau of Labor Statistics</a></li>
-</ul>
-</div>
-<div id="code" class="section level3">
-<h3><span class="header-section-number">2.2.6</span> Code</h3>
-<p>All of your code should be stored on GitHub. In your report, include a link to the repo, as well as links to specific files as relevant. The static visualizations should be done in R, but other pieces, such as data importation and cleaning do not.</p>
-</div>
-<div id="analysis" class="section level3">
-<h3><span class="header-section-number">2.2.7</span> Analysis</h3>
-<p>You have a lot of freedom to choose what to do, as long as you restrict yourselves to exploratory techniques (rather than modeling / prediction approaches). In addition, your analysis must be clearly documented and reproducible.</p>
-</div>
-<div id="feedback" class="section level3">
-<h3><span class="header-section-number">2.2.8</span> Feedback</h3>
-<p>At any point, you may ask the TAs (Bridget and Zach) or the instructor (Joyce) for advice. Our primary role in this regard will be to provide general guidance on your choice of data / topic / direction. As always, you are encouraged to post specific questions to <a href="https://piazza.com/" target="_blank">Piazza</a>, particularly coding questions and issues. You may also volunteer to discuss your project with the class in order to get feedback–if you’d like to do this, <a href="http://stat.columbia.edu/department-directory/name/joyce-robbins/" target="_blank">email the instructor</a> to schedule a date.</p>
-</div>
-<div id="peer-review" class="section level3">
-<h3><span class="header-section-number">2.2.9</span> Peer review</h3>
-<p>A portion of your grade is based on the feedback <em>you</em> give to other groups. After the due date, each individual will be assigned two project groups to review, and instructions will be provided.</p>
-<p><strong>Note</strong>: part of the grade you receive for the class is based on the quality of review that you <em>write</em>, not on the feedback that your project <em>receives.</em> Your grade for the project (as for all other assignments for the class) will be determined solely by the instructor and TAs.</p>
-</div>
-<div id="report-format" class="section level3">
-<h3><span class="header-section-number">2.2.10</span> Report format</h3>
-<p>With the exception of the interactive part, your project should be submitted to CourseWorks as an <strong>.Rmd</strong> and <strong>.html</strong> or <strong>pdf</strong> file, with graphs / output rendered. If it’s not feasible to include certain portions of your material in the report, make those parts available online (for example, GitHub), and provide links to them in the report.</p>
-<p>You will lose points if we have trouble reading your file, need to ask you to resubmit with graphs visible, if links are broken, or if we have other difficulties accessing your materials. It’s ok if code is in different files and different places, just make sure there are working links in your report to these locations. <strong>Note</strong>: Using Markdown + code chunks is supposed to make combining code, text and graphs easier. If it is making it more difficult, you are probably trying to do something that isn’t well suited to the tool set. Focus on the text and graphs, not the formatting. If you’re not sure if something is important to focus on or not, please ask.</p>
-<p><em>Advice</em>: don’t wait to start writing. Your overall project will undoubtedly be better if you give up trying to get that last graph perfect or the last bit of analysis done and get to the <em>writing</em>!</p>
-</div>
-<div id="a-note-on-style" class="section level3">
-<h3><span class="header-section-number">2.2.11</span> A note on style</h3>
-<p>You are encouraged to be as intellectually honest as possible. That means pointing out flaws in your work, detailing obstacles, disagreements, decision points, etc. – the kinds of “behind-the-scene” things that are important but often left out of reports. You may use the first person (“I”/“We”) or specific team members’ names, as relevant.</p>
-</div>
-</div>
-<div id="outline" class="section level2">
-<h2><span class="header-section-number">2.3</span> Outline</h2>
-<p>Your report should include the following sections, with subtitles (“Introduction”, etc.) as indicated:</p>
-<div id="introduction-1" class="section level3">
-<h3><span class="header-section-number">2.3.1</span> Introduction</h3>
-<p>Explain why you chose this topic, and the questions you are interested in studying.</p>
-<p>List team members and a description of how each contributed to the project.</p>
-</div>
-<div id="description-of-data" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Description of data</h3>
-<p>Describe how the data was collected, how you accessed it, and any other noteworthy features.</p>
-</div>
-<div id="analysis-of-data-quality" class="section level3">
-<h3><span class="header-section-number">2.3.3</span> Analysis of data quality</h3>
-<p>Provide a detailed, well-organized description of data quality, including textual description, graphs, and code.</p>
-</div>
-<div id="main-analysis-exploratory-data-analysis" class="section level3">
-<h3><span class="header-section-number">2.3.4</span> Main analysis (Exploratory Data Analysis)</h3>
-<p>Provide a detailed, well-organized description of your findings, including textual description, graphs, and code. Your focus should be on both the results and the process. Include, as reasonable and relevant, approaches that didn’t work, challenges, the data cleaning process, etc.</p>
-</div>
-<div id="executive-summary-presentation-style" class="section level3">
-<h3><span class="header-section-number">2.3.5</span> Executive summary (Presentation-style)</h3>
-<p>Provide a short nontechnical summary of the most revealing findings of your analysis written for a nontechnical audience. The length should be approximately two pages (if we were using pages…) Take extra care to clean up your graphs, ensuring that best practices for presentation are followed.</p>
-<p><strong>Note</strong>: “Presentation” here refers to the style of graph, that is, graphs that are cleaned up for presentation, as opposed to the rough ones we often use for exploratory data analysis. You do not have to present your work to the class! However, you may choose to present your work as your community contribution, in which case you need to email me to set a date before the community contribution due date. (The presentation itself may be later.)</p>
-</div>
-<div id="interactive-component" class="section level3">
-<h3><span class="header-section-number">2.3.6</span> Interactive component</h3>
-<p>Select one (or more) of your key findings to present in an interactive format. Be selective in the choices that you present to the user; the idea is that in 5-10 minutes, users should have a good sense of the question(s) that you are interested in and the trends you’ve identified in the data. In other words, they should understand the value of the analysis, be it business value, scientific value, general knowledge, etc.</p>
-<p>Interactive graphs must follow all of the best practices as with static graphs in terms of perception, labeling, accuracy, etc.</p>
-<p>You may choose the tool (D3, Shiny, or other) The complexity of your tool will be taken into account: we expect more complexity from a higher-level tool like Shiny than a lower-level tool like D3, which requires you to build a lot from scratch.</p>
-<p>Make sure that the user is clear on what the tool does and how to use it.</p>
-<p>Publish your graph somewhere on the web and provide a link in your report in the interactive section. The obvious choices are <a href="http://blockbuilder.org/" target="_blank">blockbuilder.org</a> to create a block for D3, and <a href="https://www.shinyapps.io/" target="_blank">shinyapps.io</a> for Shiny apps but other options are fine. You are encouraged to share experiences on <a href="https://piazza.com/" target="_blank">Piazza</a> to help classmates with the publishing process.</p>
-<p>As applicable, all of the following will be considered in the grading process:</p>
-<ul>
-<li>Choice of data and plot types to present</li>
-<li>Clear relevance to question(s), project in general</li>
-<li>Design of interactive component(s)</li>
-<li>Clarity of presentation, including instructions</li>
-<li>Technical execution (include a description of what you would work on in the future, what you’ve attempted, etc. so we know it’s on your radar)</li>
-</ul>
-</div>
-<div id="conclusion" class="section level3">
-<h3><span class="header-section-number">2.3.7</span> Conclusion</h3>
-<p>Discuss limitations and future directions, lessons learned.</p>
-</div>
-</div>
-<div id="faq" class="section level2">
-<h2><span class="header-section-number">2.4</span> FAQ</h2>
-<ol style="list-style-type: decimal">
-<li><p><strong>How long should the project be?</strong> It should take the reader approximately 15-20 minutes to read the report. We cannot provide a specific number of graphs or pages since there are so many variables. Use your judgment to cover all of the important material without being repetitive. You can report on what you’ve done without including all of the graphs; for example, if you looked at maps of each of the fifty states you can include 1 or 2 as examples.</p></li>
-<li><p><strong>Do we have to present the project to the class?</strong> No. Presenting your project as your community contribution is optional.</p></li>
-<li><p><strong>Someone has already used the same data, is that ok?</strong> Yes. As long as you get the data from the original source, not a site like Kaggle, you’re fine. You can check with the professor if you want to be sure.</p></li>
-<li><p><strong>I spent 30 minutes looking at my data, and then 1000 hours building this super cool interactive app so users can analyze the data themselves. Can’t you count the interactive part for 95% of my grade?</strong> No. While skill sets overlap in the real world, and it’s important to know something about building things, the assumption is that you are doing the work of the data scientist: actually analyzing the data rather than building tools for someone else to do it. The former (the data!) has been the main focus of this class and therefore is the primary focus of the final project.</p></li>
-</ol>
-</div>
-<div id="executive-summary-notes" class="section level2">
-<h2><span class="header-section-number">2.5</span> Executive summary notes</h2>
-<p>The executive summary should be a well-formatted, presentable final product of your results. Here are some notes to consider when putting it together:</p>
-<ul>
-<li>Title, axis labels, tick mark labels, and legends should be comprehensible (easy to understand) and legible (easy to read / decipher).</li>
-<li>Tick marks should not be labeled in scientific notation or with long strings of zeros, such as 3000000000. Instead, convert to smaller numbers and change the units: 3000000000 becomes “3” and the axis label “billions of views”.</li>
-<li>Units should be intuitive (An axis labeled in month/day/year format is intuitive; one labeled in seconds since January 1, 1970 is not.)</li>
-<li>The font size should be large enough to read clearly. The default in ggplot2 is generally too small. You can easily change it by passing the base font size to the theme, such as <code>+ theme_grey(16)</code> (The default base font size is 11).</li>
-<li>The order of items on the axes and legends should be logical. (Alphabetical is usually not the best option.)</li>
-<li>Colors should be color-vision-deficiency-friendly.</li>
-<li>If categorical variable levels are long, set up the graph so the categorical variable is on the y-axis and the names are horizontal. A better option, if possible, is to shorten the names of the levels.</li>
-<li>Not all EDA graphs lend themselves to presentation, either because the graph form is hard to understand without practice or it’s not well labeled. The labeling problem can be solved by adding text in an image editor. The downside is that it is not reproducible. If you want to go this route, for the Mac, <a href="https://www.apple.com/keynote/" target="_blank">Keynote</a> and <a href="https://paintbrush.sourceforge.io/" target="_blank">Paintbrush</a> are good, free options.</li>
-<li>Err on the side of simplicity. Don’t, for example, overuse color when it’s not necessary. Ask yourself: does color make this graph any clearer? If it doesn’t, leave it out.</li>
-<li>Test your graphs on nontechnical friends and family and ask for feedback.</li>
-</ul>
-<p>Above all, have fun with it <i class="far fa-smile-beam"></i></p>
+<div id="square-bins" class="section level2">
+<h2><span class="header-section-number">11.2</span> Square bins</h2>
+<p>Packages such as <code>statebins</code> create choropleth style maps with equal size regions that roughly represent the location of the region, but not the size or shape.</p>
+<p><strong>Important</strong>: Don’t install <strong>statebins</strong> from CRAN; use the <a href="https://github.com/hrbrmstr/statebins" target="_blank">dev version</a> – it contains many improvements, which are detailed in <a href="https://rud.is/b/2017/11/18/statebins-reimagined/#comment-19346" target="_blank">“Statebins Reimagined”</a>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># devtools::install_github(&quot;hrbrmstr/statebins&quot;)</span>
+<span class="kw">library</span>(statebins)
+df_illit &lt;-<span class="st"> </span>state.x77 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">rownames_to_column</span>(<span class="st">&quot;state&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(state, Illiteracy)
+
+<span class="co"># Note: direction = 1 switches the order of the fill scale </span>
+<span class="co"># so darker shades represent higher illiteracy rates</span>
+<span class="co"># (The default is -1).</span>
+
+<span class="kw">statebins</span>(df_illit, <span class="dt">value_col=</span><span class="st">&quot;Illiteracy&quot;</span>,
+          <span class="dt">name =</span> <span class="st">&quot;%&quot;</span>, <span class="dt">direction =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;State Illiteracy Rates, 1977&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_statebins</span>()</code></pre>
+<p><img src="maps_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -624,8 +532,8 @@ Footer
           </div>
         </div>
       </div>
-<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="contribute.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dates.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="network.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -655,7 +563,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jtr13/EDAV/edit/master/final_presentation.Rmd",
+"link": "https://github.com/jtr13/EDAV/edit/master/maps.Rmd",
 "text": "Edit"
 },
 "download": null,
