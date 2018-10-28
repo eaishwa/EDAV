@@ -4,7 +4,7 @@
 
 ## Overview
 
-This section has resources for learning about graphical perception and using colors effectively. 
+This section has resources for learning about graphical perception and how to use colors effectively. 
 
 ## Perception
 
