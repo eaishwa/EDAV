@@ -1,7 +1,7 @@
 --- 
 title: "edav.info/"
 author: "Zach Bogart, Joyce Robbins"
-date: "2018-10-28"
+date: "2018-10-30"
 site: bookdown::bookdown_site
 documentclass: book
 #bibliography: [book.bib]
@@ -68,7 +68,7 @@ Not finding what you are looking for? Think a section could be made clearer? Con
 ## Fun stuff
 
 ### T-shirts
-Zach Bogart has made a few t-shirts available on [Teespring](https://teespring.com/stores/edav){target="_blank"} so you can show your love for EDAV and R. Hope you enjoy. 
+Zach Bogart has made a few t-shirts available on [Teespring](https://teespring.com/stores/edav){target="_blank"} so you can show your love for EDAV and R. Hope you enjoy! 
 
 <center>
 [![White EDAV Logo Shirt](images/blue_edav_shirt.png)](https://teespring.com/edav-info){target="_blank" class="active-banner"}

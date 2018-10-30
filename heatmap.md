@@ -152,12 +152,6 @@ g1 + geom_bin2d(binwidth = c(10, 10))
 g1 + geom_hex(binwidth = c(5, 5))
 ```
 
-```
-## Warning: Computation failed in `stat_binhex()`:
-## Package `hexbin` required for `stat_binhex`.
-## Please install and try again.
-```
-
 <img src="heatmap_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 
@@ -165,12 +159,6 @@ g1 + geom_hex(binwidth = c(5, 5))
 # hexagonal bins + scatterplot layer
 g1 + geom_hex(binwidth = c(5, 5), alpha = .4) + 
   geom_point(size = 2, alpha = 0.8)
-```
-
-```
-## Warning: Computation failed in `stat_binhex()`:
-## Package `hexbin` required for `stat_binhex`.
-## Please install and try again.
 ```
 
 <img src="heatmap_files/figure-html/unnamed-chunk-6-1.png" width="672" />
@@ -181,12 +169,6 @@ g1 + geom_hex(binwidth = c(5, 5), alpha = .4) +
 ggplot(SpeedSki, aes(Year, Speed)) + 
   scale_fill_gradient(low = "#cccccc", high = "#09005F") + # color
   geom_hex(bins = 10) # number of bins horizontally/vertically
-```
-
-```
-## Warning: Computation failed in `stat_binhex()`:
-## Package `hexbin` required for `stat_binhex`.
-## Please install and try again.
 ```
 
 <img src="heatmap_files/figure-html/unnamed-chunk-7-1.png" width="672" />
