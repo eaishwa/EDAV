@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="basics.html">
+<link rel="prev" href="histo.html">
+<link rel="next" href="dates.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -486,85 +486,112 @@ function unhover(element) {
 <br><br>
 <a href="index.html"><img src="images/icons/edav_resource_url_no_smile.png" onmouseover="hover(this);" onmouseout="unhover(this);" /></a>
 </center>
-<div id="header">
-<h1 class="title">edav.info/</h1>
-<p class="author"><em>Zach Bogart, Joyce Robbins</em></p>
-<p class="date"><em>2018-10-30</em></p>
+<div id="ridgeline" class="section level1">
+<h1><span class="header-section-number">10</span> Chart: Ridgeline Plots</h1>
+<p><img src="images/banners/banner_ridgeline.png" />
+<em>This chapter originated as a community contribtuion proposed by <a href="https://github.com/nehasaraf1994" target="_blank">nehasaraf1994</a></em></p>
+<p><em>This page is a work in progress. We appreciate any input you may have. If you would like to help improve this page, consider <a href="contribute.html">contributing to our repo</a>.</em></p>
+<div id="overview-8" class="section level2">
+<h2><span class="header-section-number">10.1</span> Overview</h2>
+<p>This section covers how to make ridgeline plots.</p>
 </div>
-<div id="introduction" class="section level1 unnumbered">
-<h1>Introduction</h1>
-<p><img src="images/banners/banner_intro.png" /></p>
-<div id="everything-you-need-for-edav" class="section level2">
-<h2><span class="header-section-number">0.1</span> Everything you need for EDAV</h2>
-<p>This resource has everything you need and more to be successful with R, this EDAV course, and beyond. Let’s get started!</p>
-<p>With this resource, we try to give you a <strong>curated collection of tools and references</strong> that will make it easier to learn how to work with data in R.</p>
-<p>In addition, we include sections on <strong>basic chart types/tools</strong> so you can learn by doing.</p>
-<p>There are also <strong>several walkthroughs</strong> where we work with data and discuss problems as well as some tips/tricks that will help you.</p>
-<p>We hope this resource serves you well!</p>
-<p>This resource is specifically tailored to the GR5702 Exploratory Data Analysis and Visualization course offered at <a href="https://www.columbia.edu/" target="_blank">Columbia University</a>. However, anyone interested in working with data in R will benefit from perusing these pages.</p>
+<div id="tldr-6" class="section level2">
+<h2><span class="header-section-number">10.2</span> tl;dr</h2>
+<p>I want a nice example and I want it NOW!</p>
+<p>Here’s a look at the dose of theophylline administered orally to the subject on which the concentration of theophylline is observed:</p>
+<p><img src="ridgeline_files/figure-html/tldr-show-plot-1.png" width="672" /></p>
+<p>Here is the code:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggridges&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+Theoph_data &lt;-<span class="st"> </span>Theoph
+<span class="kw">ggplot</span>(Theoph_data, <span class="kw">aes</span>(<span class="dt">x=</span>Dose,<span class="dt">y=</span>Subject,<span class="dt">fill=</span>Subject))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density_ridges_gradient</span>(<span class="dt">scale =</span> <span class="dv">4</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_ridges</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Dose of theophylline(mg/kg)&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Subject #&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Density estimation of dosage given to various subjects&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre>
+<p>For more info on this dataset, type <code>?datasets::Theoph</code> into the console.</p>
 </div>
-<div id="how-this-resource-is-structured" class="section level2">
-<h2><span class="header-section-number">0.2</span> How this resource is structured</h2>
-<p>This resource is split into four color-coded sections, each of which provides different kinds of assistance. Below is an explanation of each section:</p>
-<div id="section-i-information-blue" class="section level3">
-<h3><span class="header-section-number">0.2.1</span> Section I: Information (Blue)</h3>
-<p><img src="images/banners/banner_blue.png" /></p>
-<p>Pages in the <strong>blue section</strong> contain basic <strong>information</strong>. Examples of blue pages include this introduction page and the <a href="basics.html">basics page</a>, which explains how to setup R/RStudio as well as ways to get help if you need it. Blue pages are the help desk of this resource: look to them if you are lost and need to find your way.</p>
+<div id="simple-examples-5" class="section level2">
+<h2><span class="header-section-number">10.3</span> Simple examples</h2>
+<p>Okay…much simpler please.</p>
+<p>Let’s use the <code>Orange</code> dataset from the <code>datasets</code> package:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;datasets&quot;</span>)
+<span class="kw">head</span>(Orange, <span class="dt">n=</span><span class="dv">5</span>)</code></pre>
+<pre><code>## Grouped Data: circumference ~ age | Tree
+##   Tree  age circumference
+## 1    1  118            30
+## 2    1  484            58
+## 3    1  664            87
+## 4    1 1004           115
+## 5    1 1231           120</code></pre>
 </div>
-<div id="section-ii-walkthroughs-red" class="section level3">
-<h3><span class="header-section-number">0.2.2</span> Section II: Walkthroughs (Red)</h3>
-<p><img src="images/banners/banner_red.png" /></p>
-<p>Pages in the <strong>red section</strong> contain more extensive <strong>walkthroughs</strong>. An example of a red page is the <a href="iris.html">iris walkthrough</a>, where a well-known dataset is presented as a pretty scatterplot and steps are shown from start to finish. This page type is the most thorough: it tries to provide full documentation, explanations of design choices, and advice on best practices. It’s like going to office hours and having a great clarifying chat with a course assistant…in article form. If you would like to see a fully-worked-through example of something with a lot of guidance along the way, check out the red pages.</p>
+<div id="ridgeline-plots-using-ggridge" class="section level2">
+<h2><span class="header-section-number">10.4</span> Ridgeline Plots using ggridge</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggridges&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+<span class="kw">ggplot</span>(Orange, <span class="kw">aes</span>(<span class="dt">x=</span>circumference,<span class="dt">y=</span>Tree,<span class="dt">fill =</span> Tree))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density_ridges</span>(<span class="dt">scale =</span> <span class="dv">2</span>, <span class="dt">alpha=</span><span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_ridges</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="dv">4</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.8</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Circumference at Breast Height&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Tree with ordering of max diameter&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Density estimation of circumference of different types of Trees&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre>
+<p><img src="ridgeline_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><code>ggridge</code> uses two main geoms to plot the ridgeline density plots: “geom_density_ridges” and “geom_ridgeline”. They are used to plot the densities of categorical variable factors and see their distribution over a continuous scale.</p>
 </div>
-<div id="section-iii-documentation-green" class="section level3">
-<h3><span class="header-section-number">0.2.3</span> Section III: Documentation (Green)</h3>
-<p><img src="images/banners/banner_green.png" /></p>
-<p>Pages in the <strong>green section</strong> contain more compact <strong>documentation</strong>. An example of a green page is the <a href="histo.html">histogram page</a>, which includes simple examples of how to create histograms, when to use them, and things to be aware of/watch out for. The green pages hold your hand much less than the red pages: they explain how to use a chart/tool using examples and simple terms. If you have an idea in mind and are just wondering how to execute it, the green pages will help fill in those gaps.</p>
+<div id="when-to-use-3" class="section level2">
+<h2><span class="header-section-number">10.5</span> When to Use</h2>
+<p>Ridgeline plots can be used when a number of data segments have to be plotted on the same horizontal scale. It is presented with slight overlap. Ridgeline plots are very useful to visualize the distribution of a categorical variable over time or space.</p>
+<p>A good example using ridgeline plots will be a great example is visualizing the distribution of salary over different departments in a company.</p>
 </div>
-<div id="section-iv-references-yellow" class="section level3">
-<h3><span class="header-section-number">0.2.4</span> Section IV: References (Yellow)</h3>
-<p><img src="images/banners/banner_yellow.png" /></p>
-<p>Pages in the <strong>yellow section</strong> contain simple collections of <strong>references</strong>. An example of a yellow page is the <a href="general.html">external resources page</a>, which is a list of materials that you can look through and learn from. Yellow pages have the least amount of hand-holding: they are collections of resources and bare-boned tutorials that will help you learn about new things.</p>
+<div id="considerations-3" class="section level2">
+<h2><span class="header-section-number">10.6</span> Considerations</h2>
+<p>The overlapping of the density plot can be controlled by adjusting the value of scale. Scale defines how much the peak of the lower curve touches the curve above.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggridges&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+OrchardSprays_data &lt;-<span class="st"> </span>OrchardSprays
+<span class="kw">ggplot</span>(OrchardSprays_data, <span class="kw">aes</span>(<span class="dt">x=</span>decrease,<span class="dt">y=</span>treatment,<span class="dt">fill=</span>treatment))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density_ridges_gradient</span>(<span class="dt">scale=</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_ridges</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Response in repelling honeybees&quot;</span>,<span class="dt">y=</span><span class="st">&quot;Treatment&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Density estimation of response by honeybees to a treatment for scale=3&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre>
+<p><img src="ridgeline_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(OrchardSprays_data, <span class="kw">aes</span>(<span class="dt">x=</span>decrease,<span class="dt">y=</span>treatment,<span class="dt">fill=</span>treatment))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density_ridges_gradient</span>(<span class="dt">scale=</span><span class="dv">5</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_ridges</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_discrete</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.3</span>, <span class="dv">0</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">expand =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Response in repelling honeybees&quot;</span>,<span class="dt">y=</span><span class="st">&quot;Treatment&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Density estimation of response by honeybees to a treatment for scale=5&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre>
+<p><img src="ridgeline_files/figure-html/unnamed-chunk-3-2.png" width="960" /></p>
+<p>Ridgeline plots can also be used to plot histograms on the common horizontal axis rather than density plots. But doing that may not give us any valuable results.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggridges&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+<span class="kw">ggplot</span>(InsectSprays, <span class="kw">aes</span>(<span class="dt">x =</span> count, <span class="dt">y =</span> spray, <span class="dt">height =</span> ..density.., <span class="dt">fill =</span> spray)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density_ridges</span>(<span class="dt">stat =</span> <span class="st">&quot;binline&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">scale =</span> <span class="fl">0.7</span>, <span class="dt">draw_baseline =</span> <span class="ot">FALSE</span>)</code></pre>
+<p><img src="ridgeline_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>If the same thing is done in ridgeline plots, it gives better results.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggridges&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)
+<span class="kw">ggplot</span>(InsectSprays, <span class="kw">aes</span>(<span class="dt">x=</span>count,<span class="dt">y=</span>spray,<span class="dt">fill=</span>spray))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_density_ridges_gradient</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_ridges</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Count of Insects&quot;</span>,<span class="dt">y=</span><span class="st">&quot;Types of Spray&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;The counts of insects treated with different insecticides.&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>))</code></pre>
+<p><img src="ridgeline_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-</div>
-<div id="help-improve-edav.info" class="section level2">
-<h2><span class="header-section-number">0.3</span> Help improve <em>edav.info/</em></h2>
-<p>Not finding what you are looking for? Think a section could be made clearer? Consider helping improve <em>edav.info/</em> by submitting a pull request to the <a href="https://github.com/jtr13/EDAV" target="_blank">github page</a>. Don’t understand that last sentence? We have a <a href="contribute.html">page on how you can contribute to <em>edav.info/</em></a>.</p>
-</div>
-<div id="fun-stuff" class="section level2">
-<h2><span class="header-section-number">0.4</span> Fun stuff</h2>
-<div id="t-shirts" class="section level3">
-<h3><span class="header-section-number">0.4.1</span> T-shirts</h3>
-<p>Zach Bogart has made a few t-shirts available on <a href="https://teespring.com/stores/edav" target="_blank">Teespring</a> so you can show your love for EDAV and R. Hope you enjoy!</p>
-<center>
-<a href="https://teespring.com/edav-info" class="active-banner" target="_blank"><img src="images/blue_edav_shirt.png" alt="White EDAV Logo Shirt" /></a>
-<a href="https://teespring.com/r-edav-info" class="active-banner" target="_blank"><img src="images/blue-r-shirt.png" alt="R Shirt" /></a>
-</center>
-<p><em>P.S. Designing a cool shirt or sticker is a great addition to your community contribution. It has to be cool, though <i class="far fa-smile"></i></em></p>
-<!-- Contact -->
-</div>
-</div>
-<div id="contact" class="section level2">
-<h2><span class="header-section-number">0.5</span> Contact</h2>
-<p>Zach Bogart:
-<a href="https://zachbogart.com/" target="_blank">Website</a>
-/
-<a href="https://twitter.com/zachbogart" target="_blank">Twitter</a>
-/
-<a href="https://github.com/zachbogart" target="_blank">GitHub</a></p>
-<p>Joyce Robbins:
-<a href="http://stat.columbia.edu/department-directory/name/joyce-robbins/" target="_blank">Columbia Profile</a>
-/
-<a href="http://www.joyce-robbins.com/" target="_blank">Website</a>
-/
-<a href="https://twitter.com/jtrnyc" target="_blank">Twitter</a>
-/
-<a href="https://github.com/jtr13" target="_blank">GitHub</a></p>
-<!-- License -->
-</div>
-<div id="license" class="section level2">
-<h2><span class="header-section-number">0.6</span> License</h2>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<div id="external-resources-5" class="section level2">
+<h2><span class="header-section-number">10.7</span> External Resources</h2>
+<ul>
+<li><p><a href="https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html" target="_blank">Introduction to ggridges</a>: An excellent collection of code examples on how to make ridgeline plots with <code>ggplot2</code>. Covers every parameter of ggridges and how to modify them for better visualization. If you want a ridgeline plot to look a certain way, this article will help.</p></li>
+<li><p><a href="https://rdrr.io/cran/ggridges/man/geom_density_ridges.html" target="_blank">Article on ridgeline plots with ggplot2</a>: Few examples using different examples. Great for starting with ridgeline plots.</p></li>
+<li><p><a href="https://blog.revolutionanalytics.com/2017/07/joyplots.html" target="_blank">History of Ridgeline plots</a>: To refer to the theory of ridgeline plots.</p></li>
+</ul>
 
 </div>
 </div>
@@ -591,8 +618,8 @@ Footer
           </div>
         </div>
       </div>
-
-<a href="basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="histo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -622,7 +649,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jtr13/EDAV/edit/master/index.Rmd",
+"link": "https://github.com/jtr13/EDAV/edit/master/ridgeline.Rmd",
 "text": "Edit"
 },
 "download": null,
