@@ -357,6 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11" data-path="maps.html"><a href="maps.html"><i class="fa fa-check"></i><b>11</b> Spatial Data</a><ul>
 <li class="chapter" data-level="11.1" data-path="maps.html"><a href="maps.html#choropleth-maps"><i class="fa fa-check"></i><b>11.1</b> Choropleth maps</a></li>
 <li class="chapter" data-level="11.2" data-path="maps.html"><a href="maps.html#square-bins"><i class="fa fa-check"></i><b>11.2</b> Square bins</a></li>
+<li class="chapter" data-level="11.3" data-path="maps.html"><a href="maps.html#longitude-latitude-data"><i class="fa fa-check"></i><b>11.3</b> Longitude / Latitude data</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="missing.html"><a href="missing.html"><i class="fa fa-check"></i><b>12</b> Missing Data</a><ul>
 <li class="chapter" data-level="12.1" data-path="missing.html"><a href="missing.html#overview-8"><i class="fa fa-check"></i><b>12.1</b> Overview</a></li>
@@ -522,6 +523,11 @@ df_illit &lt;-<span class="st"> </span>state.x77 <span class="op">%&gt;%</span><
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;State Illiteracy Rates, 1977&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_statebins</span>()</code></pre>
 <p><img src="maps_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="longitude-latitude-data" class="section level2">
+<h2><span class="header-section-number">11.3</span> Longitude / Latitude data</h2>
+<p>Note that the options above work with <em>political boundaries</em>, based on the names of the regions that you provide. If you have longitude / latitude data, <strong>ggmap</strong> is a good choice. It is straight-forward to plot lon/lat data on a Cartestian coordinate system, with the x-axis representation longitude and the y-axis latitude – just be careful not to mix them up. The <strong>ggmap</strong> package provides a variety of maps that can serve as the backdrop for the long/lat points.</p>
+<p><strong>ggmap</strong> offers a number of different map sources. Google Maps API was the go-to, but they now <a href="https://cloud.google.com/free/" target="_blank">require you to enable billing through Google Cloud Platorm</a>. You get $300 in free credit, but if providing a credit card isn’t your thing, you may consider using Stamen Maps instead, with the <code>get_stamenmap()</code> function. Use the development version of the package; instructions and extensive examples are available on the package’s <a href="https://github.com/dkahle/ggmap" target="_blank">GitHub page</a>.</p>
 
 </div>
 </div>
