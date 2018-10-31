@@ -25,7 +25,7 @@
 <meta name="author" content="Zach Bogart, Joyce Robbins">
 
 
-<meta name="date" content="2018-10-30">
+<meta name="date" content="2018-10-31">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -489,7 +489,7 @@ function unhover(element) {
 <div id="missing" class="section level1">
 <h1><span class="header-section-number">13</span> Missing Data</h1>
 <p><img src="images/banners/banner_missing.png" />
-<em>This chapter originated as a community contribtuion proposed by <a href="https://github.com/ujjwal95" target="_blank">ujjwal95</a></em></p>
+<em>This chapter originated as a community contribution created by <a href="https://github.com/ujjwal95" target="_blank">ujjwal95</a></em></p>
 <p><em>This page is a work in progress. We appreciate any input you may have. If you would like to help improve this page, consider <a href="contribute.html">contributing to our repo</a>.</em></p>
 <div id="overview-9" class="section level2">
 <h2><span class="header-section-number">13.1</span> Overview</h2>
@@ -627,7 +627,7 @@ filtered_for_numeric<span class="op">$</span>value &lt;-<span class="st"> </span
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <p><img src="missing_data_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Can you see the problem with the above graph? Notice that the scale is for <em>all</em> the variables, hence it cannot show the variable level differences!
-To solve this problem, we can standarize the variables:</p>
+To solve this problem, we can standardize the variables:</p>
 <pre class="sourceCode r"><code class="sourceCode r">filtered_for_numeric &lt;-<span class="st"> </span>filtered_for_numeric <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(key) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">Std =</span> (value<span class="op">-</span><span class="kw">mean</span>(value, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))<span class="op">/</span><span class="kw">sd</span>(value, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
@@ -726,7 +726,7 @@ We can delete the rows having NAs as below:</p>
 <h4><span class="header-section-number">13.6.2.1</span> Mean/Median/Mode Imputation</h4>
 <p>We can replace missing data in continuous variables with their mean/median and missing data in discrete/categorical variables with their mode.</p>
 <p>Either we can replace all the values in the missing variable directly, for example, if “Income” has a median of 15000, we can replace all the missing values in “Income” with 15000, in a technique known as <em>Generalized Imputation</em>.</p>
-<p>Or, we can replace all values on a similar case basis. For example, we notice that the income of people with <code>Age &gt; 60</code> is much less than those with <code>Age &lt; 60</code>, on average, and hence we calculate the median income of each <code>Age</code> group seperately, and impute values separately for each group.</p>
+<p>Or, we can replace all values on a similar case basis. For example, we notice that the income of people with <code>Age &gt; 60</code> is much less than those with <code>Age &lt; 60</code>, on average, and hence we calculate the median income of each <code>Age</code> group separately, and impute values separately for each group.</p>
 <p>The problem with these methods is that they disturb the underlying distribution of the data.</p>
 </div>
 </div>
