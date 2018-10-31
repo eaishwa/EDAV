@@ -1,12 +1,12 @@
 # (PART) Documentation (Green) {-}
 
-# Chart: Bar Graph {#bar}
+# Chart: Bar Chart {#bar}
 
 ![](images/banners/banner_bargraph.png)
 
 ## Overview
 
-This section covers how to make bar graphs
+This section covers how to make bar charts
 
 ## tl;dr
 <!-- Gimme example -->
@@ -141,19 +141,8 @@ ggplot(colors_female_hair, aes(x = Hair, y = Total)) +
 
 <img src="bargraph_files/figure-html/coord-flip-1.png" width="672" />
 
-### Reorder Factor
-One way to reorder bar graphs is to reorder the factor:
-
-```r
-reordered <- colors_female_hair
-reordered$Hair <- ordered(reordered$Hair, levels = c("Red", "Black", "Blond", "Brown"))
-
-ggplot(reordered, aes(x = Hair, y = Total)) +
-  geom_bar(stat = "identity") +
-  ggtitle("Bar Graph Using ggplot2")
-```
-
-<img src="bargraph_files/figure-html/reordering-1.png" width="672" />
+### Reorder the bars
+With both base R and **ggplot2** bars are drawn in alphabetical order for character data and in the order of factor levels for factor data. However, since the default order of levels for factor data is alphabetical, the bars will be alphabetical in both cases. Please see [this tutorial](https://github.com/jtr13/codehelp/blob/master/R/reorder.md){target="_blank"} for a detailed explanation on how bars should be ordered in a bar chart, and how the **forcats** package can help you accomplish the reordering.
 
 ### Facet Wrap
 You can split the graph into small multiples using `facet_wrap()` (don't forget the tilde, ~):

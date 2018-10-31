@@ -260,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="iris.html"><a href="iris.html#helpful-links"><i class="fa fa-check"></i><b>4.11</b> Helpful links</a></li>
 </ul></li>
 <li class="part"><span><b>III Documentation (Green)</b></span></li>
-<li class="chapter" data-level="5" data-path="bar.html"><a href="bar.html"><i class="fa fa-check"></i><b>5</b> Chart: Bar Graph</a><ul>
+<li class="chapter" data-level="5" data-path="bar.html"><a href="bar.html"><i class="fa fa-check"></i><b>5</b> Chart: Bar Chart</a><ul>
 <li class="chapter" data-level="5.1" data-path="bar.html"><a href="bar.html#overview-3"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
 <li class="chapter" data-level="5.2" data-path="bar.html"><a href="bar.html#tldr-1"><i class="fa fa-check"></i><b>5.2</b> tl;dr</a></li>
 <li class="chapter" data-level="5.3" data-path="bar.html"><a href="bar.html#simple-examples"><i class="fa fa-check"></i><b>5.3</b> Simple examples</a><ul>
@@ -274,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="bar.html"><a href="bar.html#modifications"><i class="fa fa-check"></i><b>5.7</b> Modifications</a><ul>
 <li class="chapter" data-level="5.7.1" data-path="bar.html"><a href="bar.html#flip-bars"><i class="fa fa-check"></i><b>5.7.1</b> Flip Bars</a></li>
-<li class="chapter" data-level="5.7.2" data-path="bar.html"><a href="bar.html#reorder-factor"><i class="fa fa-check"></i><b>5.7.2</b> Reorder Factor</a></li>
+<li class="chapter" data-level="5.7.2" data-path="bar.html"><a href="bar.html#reorder-the-bars"><i class="fa fa-check"></i><b>5.7.2</b> Reorder the bars</a></li>
 <li class="chapter" data-level="5.7.3" data-path="bar.html"><a href="bar.html#facet-wrap"><i class="fa fa-check"></i><b>5.7.3</b> Facet Wrap</a></li>
 </ul></li>
 <li class="chapter" data-level="5.8" data-path="bar.html"><a href="bar.html#external-resources"><i class="fa fa-check"></i><b>5.8</b> External resources</a></li>
@@ -488,11 +488,11 @@ function unhover(element) {
 <a href="index.html"><img src="images/icons/edav_resource_url_no_smile.png" onmouseover="hover(this);" onmouseout="unhover(this);" /></a>
 </center>
 <div id="bar" class="section level1">
-<h1><span class="header-section-number">5</span> Chart: Bar Graph</h1>
+<h1><span class="header-section-number">5</span> Chart: Bar Chart</h1>
 <p><img src="images/banners/banner_bargraph.png" /></p>
 <div id="overview-3" class="section level2">
 <h2><span class="header-section-number">5.1</span> Overview</h2>
-<p>This section covers how to make bar graphs</p>
+<p>This section covers how to make bar charts</p>
 </div>
 <div id="tldr-1" class="section level2">
 <h2><span class="header-section-number">5.2</span> tl;dr</h2>
@@ -609,16 +609,9 @@ colors_female_hair &lt;-<span class="st"> </span>colors <span class="op">%&gt;%<
 <span class="st">  </span><span class="kw">coord_flip</span>()</code></pre>
 <p><img src="bargraph_files/figure-html/coord-flip-1.png" width="672" /></p>
 </div>
-<div id="reorder-factor" class="section level3">
-<h3><span class="header-section-number">5.7.2</span> Reorder Factor</h3>
-<p>One way to reorder bar graphs is to reorder the factor:</p>
-<pre class="sourceCode r"><code class="sourceCode r">reordered &lt;-<span class="st"> </span>colors_female_hair
-reordered<span class="op">$</span>Hair &lt;-<span class="st"> </span><span class="kw">ordered</span>(reordered<span class="op">$</span>Hair, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Red&quot;</span>, <span class="st">&quot;Black&quot;</span>, <span class="st">&quot;Blond&quot;</span>, <span class="st">&quot;Brown&quot;</span>))
-
-<span class="kw">ggplot</span>(reordered, <span class="kw">aes</span>(<span class="dt">x =</span> Hair, <span class="dt">y =</span> Total)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Bar Graph Using ggplot2&quot;</span>)</code></pre>
-<p><img src="bargraph_files/figure-html/reordering-1.png" width="672" /></p>
+<div id="reorder-the-bars" class="section level3">
+<h3><span class="header-section-number">5.7.2</span> Reorder the bars</h3>
+<p>With both base R and <strong>ggplot2</strong> bars are drawn in alphabetical order for character data and in the order of factor levels for factor data. However, since the default order of levels for factor data is alphabetical, the bars will be alphabetical in both cases. Please see <a href="https://github.com/jtr13/codehelp/blob/master/R/reorder.md" target="_blank">this tutorial</a> for a detailed explanation on how bars should be ordered in a bar chart, and how the <strong>forcats</strong> package can help you accomplish the reordering.</p>
 </div>
 <div id="facet-wrap" class="section level3">
 <h3><span class="header-section-number">5.7.3</span> Facet Wrap</h3>
