@@ -18,14 +18,14 @@ rmd_files: [
 
   "bargraph.Rmd",
   "boxplot.Rmd",
-<<<<<<< HEAD
   "scatterplot.Rmd",
-  "cleveland.Rmd",
-=======
   "heatmap.Rmd",
   "histogram.Rmd",
-  "scatterplot.Rmd", 
->>>>>>> 9e2ef1e01c1ad3eb27b998406f6e0f96d4924c4e
+  "ridgeline.Rmd",
+  "scatterplot.Rmd",
+  "dates.Rmd",
+  "maps.Rmd",
+  "missing_data.Rmd",
   "network.Rmd",
 
   "general_resources.Rmd",
@@ -34,4 +34,3 @@ rmd_files: [
   "github_resources.Rmd",
   "chapter_index.Rmd"
 ]
-
