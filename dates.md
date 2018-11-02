@@ -110,7 +110,7 @@ Sys.Date()
 ```
 
 ```
-## [1] "2018-10-31"
+## [1] "2018-11-02"
 ```
 
 ```r
@@ -130,7 +130,7 @@ weekdays(today)
 ```
 
 ```
-## [1] "Wednesday"
+## [1] "Friday"
 ```
 
 ```r
@@ -138,7 +138,7 @@ weekdays(today, abbreviate = TRUE)
 ```
 
 ```
-## [1] "Wed"
+## [1] "Fri"
 ```
 
 ```r
@@ -146,7 +146,7 @@ months(today)
 ```
 
 ```
-## [1] "October"
+## [1] "November"
 ```
 
 ```r
@@ -154,7 +154,7 @@ months(today, abbreviate = TRUE)
 ```
 
 ```
-## [1] "Oct"
+## [1] "Nov"
 ```
 
 ```r
@@ -182,7 +182,7 @@ lubridate::yday(today)
 ```
 
 ```
-## [1] 304
+## [1] 306
 ```
 
 ```r
@@ -190,7 +190,7 @@ lubridate::month(today)
 ```
 
 ```
-## [1] 10
+## [1] 11
 ```
 
 ```r
@@ -198,7 +198,7 @@ lubridate::month(today, label = TRUE)
 ```
 
 ```
-## [1] Oct
+## [1] Nov
 ## 12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec
 ```
 
@@ -207,7 +207,7 @@ lubridate::mday(today)
 ```
 
 ```
-## [1] 31
+## [1] 2
 ```
 
 ```r
@@ -223,7 +223,7 @@ lubridate::wday(today)
 ```
 
 ```
-## [1] 4
+## [1] 6
 ```
 
 ## Plotting with a `Date` class variable
